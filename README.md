@@ -18,6 +18,6 @@ I use the CryptoJS v3.1.2 for md5 hashes and CSSTableGenerator in my javascripts
 This project is still in test phase so there are many flows and errors. Any kind of suggestions and feedbacks are welcome.
 (And sorry for my bad english)
 
-Documentation and dependancies are in progress
+Documentation and install instruction are in progress.
 
 - wolo
