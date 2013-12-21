@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<style type="text/css">
+			.firstrow { background: #aad4ff; }
+		</style>
+	</head>
+	<body>
+		{% if entries %}
+		<table>
+			<tr class = firstrow><td>{{ name }}</td><td>{{ md5 }}</td></tr>
+			{% for entry in entries %}
+			<tr>
+				{% for entity in entry %}
+					<td>{{ entity }}</td>
+				{% end for %}
+			</tr>
+		{% end for %}
+		<table>
+		{% else %}
+		<p>No entries!</p>
+		{% end %}
+	</body>
+</html>
