@@ -1,0 +1,535 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style type="text/css">
+			.urlspot {color:#900; padding-bottom:1px; border-bottom:1px dotted #900; cursor:pointer}
+			#xcon
+			{
+				position: relative;
+			}
+			#xcon img
+			{
+				position: absolute;
+				top: -10px;
+				right: -10px;
+				cursor:pointer;
+			}
+			#ttip {position: fixed; top: 30%; left: 50%; margin-top: -50px; margin-left: -180px; display:block; background:#fff; border:3px solid #005fbf; box-shadow: 10px 10px 5px #888888; border-radius:15px; }
+			#ttcont {display:block; padding:2px 12px 3px 7px; margin-left:5px; color:#0}
+			#filedrag
+			{
+				list-style: none;
+				text-decoration: none;
+				text-align: center;
+				color: #000;
+				margin: 15px auto;
+				width: 400px;
+				height:70px;
+				border: 3px dashed #005fbf; //#999;
+				background: #aad4ff;  //#eee
+				padding: 10px;
+			}
+			
+			#rdiv
+			{
+				text-align: center;
+			}
+			
+			.CSSTableGenerator{
+				margin:0px;padding:0px;
+				width:100%;
+				box-shadow: 10px 10px 5px #888888;
+				border:1px solid #000000;
+				
+				-moz-border-radius-bottomleft:0px;
+				-webkit-border-bottom-left-radius:0px;
+				border-bottom-left-radius:0px;
+				
+				-moz-border-radius-bottomright:0px;
+				-webkit-border-bottom-right-radius:0px;
+				border-bottom-right-radius:0px;
+				
+				-moz-border-radius-topright:0px;
+				-webkit-border-top-right-radius:0px;
+				border-top-right-radius:0px;
+				
+				-moz-border-radius-topleft:0px;
+				-webkit-border-top-left-radius:0px;
+				border-top-left-radius:0px;
+			}.CSSTableGenerator table{
+				width:100%;
+				height:100%;
+				margin:0px;padding:0px;
+			}.CSSTableGenerator tr:last-child td:last-child {
+				-moz-border-radius-bottomright:0px;
+				-webkit-border-bottom-right-radius:0px;
+				border-bottom-right-radius:0px;
+			}
+			.CSSTableGenerator table tr:first-child td:first-child {
+				-moz-border-radius-topleft:0px;
+				-webkit-border-top-left-radius:0px;
+				border-top-left-radius:0px;
+			}
+			.CSSTableGenerator table tr:first-child td:last-child {
+				-moz-border-radius-topright:0px;
+				-webkit-border-top-right-radius:0px;
+				border-top-right-radius:0px;
+			}.CSSTableGenerator tr:last-child td:first-child{
+				-moz-border-radius-bottomleft:0px;
+				-webkit-border-bottom-left-radius:0px;
+				border-bottom-left-radius:0px;
+			}.CSSTableGenerator tr:hover td{
+				
+			}
+			.CSSTableGenerator tr:nth-child(odd){ background-color:#aad4ff; }
+			.CSSTableGenerator tr:nth-child(even)    { background-color:#ffffff; }.CSSTableGenerator td{
+				vertical-align:middle;
+				
+				
+				border:1px solid #000000;
+				border-width:0px 1px 1px 0px;
+				text-align:left;
+				padding:7px;
+				font-size:10px;
+				font-family:Arial;
+				font-weight:normal;
+				color:#000000;
+			}.CSSTableGenerator tr:last-child td{
+				border-width:0px 1px 0px 0px;
+			}.CSSTableGenerator tr td:last-child{
+				border-width:0px 0px 1px 0px;
+			}.CSSTableGenerator tr:last-child td:last-child{
+				border-width:0px 0px 0px 0px;
+			}
+			.CSSTableGenerator tr:first-child td{
+					background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+				background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
+
+				background-color:#005fbf;
+				border:0px solid #000000;
+				text-align:center;
+				border-width:0px 0px 1px 1px;
+				font-size:14px;
+				font-family:Arial;
+				font-weight:bold;
+				color:#ffffff;
+			}
+			.CSSTableGenerator tr:first-child:hover td{
+				background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+				background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
+
+				background-color:#005fbf;
+			}
+			.CSSTableGenerator tr:first-child td:first-child{
+				border-width:0px 0px 1px 0px;
+			}
+			.CSSTableGenerator tr:first-child td:last-child{
+				border-width:0px 0px 1px 1px;
+			}
+			
+			#filedrag.drag-over
+			{
+				border-color: #ff0000 !important;
+			}
+			
+			#progressbar
+			{
+				width: 400px;
+				height: 14px;
+				margin: 15px auto;
+				display: block;
+				-webkit-appearance: none;
+				border: none;
+			}
+
+			#progressbar::-webkit-progress-bar
+			{
+				background: #aad4ff;
+				border-radius: 50px;
+				padding: 2px;
+			}
+
+			#progressbar::-webkit-progress-value
+			{
+				border-radius: 50px;
+				box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+				background: #aad4ff;
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#099), to(#0000A3));
+				background: -moz-linear-gradient(top, #099, #0000A3);
+			}
+		</style>
+	</head>
+	<body>		
+		<div id="filedrag" title="Drag and drop!">Drag and drop!</div>
+		<div id="scantable"></div>
+		<br>
+		<script type="text/javascript" src="{{ static_url('md5.js') }}"></script>
+		<script>
+			var readprogress = 0;
+			var fileprogress = 0;
+			var warnum = 0;
+			var startT = null;
+			var timems = 0;
+
+			function aitem(adv, file, path)
+			{
+				var hashReader = new FileReader();
+				readprogress += 1;
+				fileprogress += 1;
+				hashReader.addEventListener("load", function(adv, file, path) { return function(ev)
+				{
+					var hashfile = ev.target;	
+					var hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(hashfile.result)).toString();
+					getJSON(adv, file, path, hash);		
+					hashfile.abort();
+				}}(adv, file, path)); // giving the file in closure because readas func is async
+				
+				//Read the hash
+				hashReader.readAsBinaryString(file); // build blob or file from that string
+			}
+			
+			function getJSON(adv, file, path, hash)
+			{
+				// Ajax JSON request
+				var http = new XMLHttpRequest();
+				http.open("GET", "/md5/" + hash, true); //the url echoing the jsonString - true - asynchron
+				http.onreadystatechange = function ()
+				{
+					if (http.readyState == 4 && http.status == 200)
+					{
+						var resp = http.responseText;
+						var data = JSON.parse(resp);
+						writedata(adv, file, path, hash, data.check);
+					}
+				}
+				http.send(null);
+				return data.check;
+			}
+			
+			function writedata(adv, file, path, hash, st)
+			{
+				insertrow(path, file.name, normsize(file.size), hash, st);
+				progressing(adv);
+			}
+			
+			function progressing(adv)
+			{
+				readprogress -= 1;
+				warfresh();
+				if (readprogress == 0)
+				{
+					progressend()
+				} else
+				{
+					incpbar(adv);
+				}
+			}
+			
+			function progressend()
+			{
+				// remove progressbar
+				var parent = document.getElementById('scantable');
+				var child = document.getElementById('progressbar');
+				parent.removeChild(child);
+						
+				getElapsedTime();
+				var warf = document.getElementById('rdiv');
+				warf.innerHTML = '---- Scan summary ----' + '<br>'
+					+ 'Time: ' + timems + ' .' + '<br>'
+					+ 'File progress: ' + fileprogress + ' .';
+				var out = '<br>' + 'Warnings: ' + warnum + ' .' + '<hr>' ;
+				if (warnum)
+				{
+					warf.innerHTML += out.fontcolor('red');
+				}
+				else
+				{							
+					warf.innerHTML += out.fontcolor('blue');
+				}
+				
+				resets();
+			}
+			
+			function normsize(siz)
+			{
+				var di = siz / 1024;
+				if (di > 1024)
+				{
+					return Math.floor(di/1024) + " Mbyte";
+				}
+				if (di > 1)
+				{
+					return Math.floor(di) + " Kbyte";
+				}
+				return siz + " byte";
+			}
+
+			function tdir(adv, item, path)
+			{
+				path = path || "";
+				if (item.isFile)
+				{
+					item.file(function(file) {aitem(adv, file, path);}, errorHandler);
+				} else if (item.isDirectory)
+				{
+					// Get folder contents
+					var dirReader = item.createReader();
+					dirReader.readEntries(function(entries)
+					{
+						for (var i=0; i<entries.length; i++)
+						{
+							tdir(Math.floor(adv / entries.length), entries[i], path + item.name + "/");
+						}
+					});
+				}
+			}
+			
+			function setpbar(val)
+			{
+				var pbar = document.getElementById('progressbar');
+				if (val <= pbar.max && val >= 0)
+				{
+					pbar.value = val;
+				}
+			}
+
+			function pbarmax()
+			{
+				var pbar = document.getElementById('progressbar');
+				return pbar.max;
+			}
+
+			function incpbar(val)
+			{
+				var pbar = document.getElementById('progressbar');
+				if (val + pbar.value <= pbar.max && val + pbar.value >= 0)
+				{
+					pbar.value += val;
+				}
+			}
+			
+			function errorHandler(ev)
+			{
+				console.log('FileSystem API error code: ' + ev.code)
+			}
+			
+			function warfresh()
+			{
+				var warf = document.getElementById('rdiv');
+				warf.innerHTML = 'File progress: ' + fileprogress + ' .';
+			}
+			
+			function starts() 
+			{
+				startT = new Date();
+			}
+
+			function resets()
+			{
+				startT = null;
+				timems = 0;
+			}
+			
+			function getElapsedTime()
+			{
+				if(!startT)
+				{
+					startT = new Date();
+				}
+
+				var tDate = new Date();	
+				var tDiff = tDate.getTime() - startT.getTime();
+				
+				timems = Math.floor(tDiff/1000);
+			}
+			
+			function clearsearch()
+			{
+				readprogress = 0;
+				fileprogress = 0;
+				warnum = 0;
+				resets();
+				var check = document.getElementById('stable');
+				if (check)
+				{
+					check.parentNode.removeChild(check);
+				}
+				
+				check = document.getElementById('rdiv');
+				if (check)
+				{
+					check.parentNode.removeChild(check);
+				}
+				
+				check = document.getElementById('progressbar');
+				if (check)
+				{
+					check.parentNode.removeChild(check);
+				}
+			}
+			
+			function htmlCreate()
+			{
+				// Clear the previous search
+				clearsearch();
+				starts();
+				
+				var scantable = document.getElementById('scantable');
+				
+				// Progressbar
+				var pbar = document.createElement('progress');
+				pbar.id = 'progressbar';
+				pbar.value = '0';
+				pbar.max = '10000';
+				scantable.appendChild(pbar);
+				setpbar(0);
+				
+				// Results
+				var rtb = document.createElement('div');
+				rtb.id = 'rdiv';
+				//rtb.innerHTML = 'Scan results: 0 warnings were found!';
+				scantable.appendChild(rtb);
+				
+				// Table
+				var tbl  = document.createElement('table');
+				tbl.className = 'CSSTableGenerator';
+				tbl.id = 'stable';				
+				
+				var tr = tbl.insertRow(0);
+				
+				var td = tr.insertCell(0);
+				td.innerHTML = "File:";
+				var td1 = tr.insertCell(1);
+				td1.innerHTML = "Size:";
+				var td2 = tr.insertCell(2);
+				td2.innerHTML = "MD5 hash:";
+				var td3 = tr.insertCell(3);
+				td3.innerHTML = "Status:";
+				
+				scantable.appendChild(tbl);
+			}
+			
+			function insertrow(p, n, si, h, st)
+			{
+				var table=document.getElementById("stable");
+				var rowCount = table.rows.length;
+				var row = table.insertRow(rowCount);
+				var cell1=row.insertCell(0);
+				var cell2=row.insertCell(1);
+				var cell3=row.insertCell(2);
+				var cell4=row.insertCell(3);
+				cell1.innerHTML = '<div title="' + p + n + '">' + n + '</div>';
+				cell2.innerHTML = si;
+				cell3.innerHTML = h;
+				
+				switch(st)
+				{
+					case 'OK':
+						cell4.innerHTML = st.fontcolor("blue");
+					break;
+					case 'N/A':
+						cell4.innerHTML = st.fontcolor("brown");
+					break;
+					case 'WARNING':
+						var url = '/ttip/' + h + "/" + n;
+						//alert(url);
+						var str = '<span class="urlspot" onclick="' + "tooltip.show('" + url + "');" + '" >' + st + '</span>';
+						cell4.innerHTML = str;
+						warnum += 1
+					break;
+					default:
+						cell4.innerHTML = st;
+				}				
+			}
+			
+			window.addEventListener('load', function (ev)
+			{
+				var dad = document.getElementById('filedrag');					
+				
+				dad.addEventListener('drop', function (ev)
+				{
+					// Clearing
+					console.clear();
+					htmlCreate();
+					starts();					
+					
+					ev.preventDefault();				
+					var items = ev.dataTransfer.items;
+					for (var i=0; i<items.length; i++)
+					{
+						var item = items[i].webkitGetAsEntry();
+						if (item)
+						{
+							if (item.isFile || item.isDirectory)
+							{
+								tdir(Math.floor(pbarmax() / items.length), item, "");
+							}
+						}
+					}
+					
+					ev.currentTarget.classList.remove('drag-over');
+				});
+				
+				dad.addEventListener('dragover', function (ev)
+				{
+					ev.preventDefault();
+					ev.currentTarget.classList.add('drag-over');
+				});		
+
+				dad.addEventListener('dragleave', function (ev)
+				{
+					ev.preventDefault();
+					ev.currentTarget.classList.remove('drag-over');
+				});
+			});
+			
+			// extreme simple tooltip
+			var tooltip = function()
+			{
+				var ttip,c,h;
+				
+				return{
+					show:function(turl)
+					{
+						var url = turl ? turl : '/ttip/aa44';
+						if (ttip == null)
+						{
+							ttip = document.createElement('div');
+							ttip.setAttribute('id', 'ttip');							
+							xcls = document.createElement('div');
+							xcls.setAttribute('id', 'xcon');
+							ttip.appendChild(xcls);
+							ximg = document.createElement('img');
+							ximg.setAttribute('src', '/static/xcon.png');
+							ximg.setAttribute('onclick', 'tooltip.hide();');
+							xcls.appendChild(ximg);
+							c = document.createElement('div');
+							c.setAttribute('id', 'ttcont');
+							ttip.appendChild(c);
+							document.body.appendChild(ttip);
+						}
+						
+						var xmlhttp =new XMLHttpRequest();
+						xmlhttp.onreadystatechange=function()
+						{
+							if (xmlhttp.readyState==4 && xmlhttp.status==200)
+							{
+								ttip.style.display = 'block';
+								c.innerHTML = xmlhttp.responseText;
+							}
+						}
+						xmlhttp.open("GET",url ,true);
+						xmlhttp.send();
+					},
+				
+					hide:function()
+					{
+						ttip.style.display = 'none';
+					}
+				};
+			}();
+	</script>
+	</body>
+</html>
